@@ -1,6 +1,7 @@
 import { registerAs } from '@nestjs/config';
 import { AppConfig } from './app-config.type';
 import validateConfig from '.././utils/validate-config';
+import dotenv from 'dotenv';
 import {
   IsEnum,
   IsInt,
@@ -50,6 +51,7 @@ class EnvironmentVariablesValidator {
 }
 
 export default registerAs<AppConfig>('app', () => {
+  dotenv.config({ path: `.${process.env.NODE_ENV}.env` });
   validateConfig(process.env, EnvironmentVariablesValidator);
 
   return {

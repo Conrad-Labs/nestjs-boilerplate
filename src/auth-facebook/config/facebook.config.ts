@@ -1,5 +1,5 @@
 import { registerAs } from '@nestjs/config';
-
+import dotenv from 'dotenv';
 import { IsOptional, IsString } from 'class-validator';
 import validateConfig from '../../utils/validate-config';
 import { FacebookConfig } from './facebook-config.type';
@@ -15,6 +15,7 @@ class EnvironmentVariablesValidator {
 }
 
 export default registerAs<FacebookConfig>('facebook', () => {
+  dotenv.config({ path: `.${process.env.NODE_ENV}.env` });
   validateConfig(process.env, EnvironmentVariablesValidator);
 
   return {

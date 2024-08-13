@@ -1,5 +1,5 @@
 import { registerAs } from '@nestjs/config';
-
+import dotenv from 'dotenv';
 import { IsOptional, IsString } from 'class-validator';
 import validateConfig from '../../utils/validate-config';
 import { GoogleConfig } from './google-config.type';
@@ -15,6 +15,7 @@ class EnvironmentVariablesValidator {
 }
 
 export default registerAs<GoogleConfig>('google', () => {
+  dotenv.config({ path: `.${process.env.NODE_ENV}.env` });
   validateConfig(process.env, EnvironmentVariablesValidator);
 
   return {
