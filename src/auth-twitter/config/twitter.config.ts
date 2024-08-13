@@ -1,4 +1,5 @@
 import { registerAs } from '@nestjs/config';
+import dotenv from 'dotenv';
 import { IsString, IsOptional } from 'class-validator';
 import validateConfig from '../../utils/validate-config';
 
@@ -13,6 +14,7 @@ class EnvironmentVariablesValidator {
 }
 
 export default registerAs('twitter', () => {
+  dotenv.config({ path: `.${process.env.NODE_ENV}.env` });
   validateConfig(process.env, EnvironmentVariablesValidator);
 
   return {

@@ -11,6 +11,7 @@ import {
 } from 'class-validator';
 import validateConfig from '../../utils/validate-config';
 import { DatabaseConfig } from './database-config.type';
+import dotenv from 'dotenv';
 
 class EnvironmentVariablesValidator {
   @ValidateIf((envValues) => envValues.DATABASE_URL)
@@ -32,6 +33,7 @@ class EnvironmentVariablesValidator {
   DATABASE_PORT: number;
 
   @ValidateIf((envValues) => !envValues.DATABASE_URL)
+  @IsOptional()
   @IsString()
   DATABASE_PASSWORD: string;
 
@@ -64,7 +66,6 @@ class EnvironmentVariablesValidator {
   DATABASE_CA: string;
 
   @IsString()
-  @IsOptional()
   DATABASE_KEY: string;
 
   @IsString()
@@ -73,6 +74,7 @@ class EnvironmentVariablesValidator {
 }
 
 export default registerAs<DatabaseConfig>('database', () => {
+  dotenv.config({ path: `.${process.env.NODE_ENV}.env` });
   validateConfig(process.env, EnvironmentVariablesValidator);
 
   return {
