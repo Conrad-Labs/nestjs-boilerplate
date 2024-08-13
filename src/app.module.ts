@@ -60,7 +60,6 @@ const infrastructureDatabaseModule = (databaseConfig() as DatabaseConfig)
         twitterConfig,
         appleConfig,
       ],
-      envFilePath: ['.env'],
     }),
     infrastructureDatabaseModule,
     I18nModule.forRootAsync({

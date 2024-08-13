@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config({ path: `.${process.env.NODE_ENV}.env` });
+
 export const APP_URL = `http://localhost:${process.env.APP_PORT}`;
 export const TESTER_EMAIL = 'john.doe@example.com';
 export const TESTER_PASSWORD = 'secret';

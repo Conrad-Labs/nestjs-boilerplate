@@ -1,5 +1,5 @@
 import { registerAs } from '@nestjs/config';
-
+import dotenv from 'dotenv';
 import { IsString } from 'class-validator';
 import validateConfig from '../../utils/validate-config';
 import { AuthConfig } from './auth-config.type';
@@ -31,6 +31,7 @@ class EnvironmentVariablesValidator {
 }
 
 export default registerAs<AuthConfig>('auth', () => {
+  dotenv.config({ path: `.${process.env.NODE_ENV}.env` });
   validateConfig(process.env, EnvironmentVariablesValidator);
 
   return {

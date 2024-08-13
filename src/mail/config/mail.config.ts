@@ -1,5 +1,5 @@
 import { registerAs } from '@nestjs/config';
-
+import dotenv from 'dotenv';
 import {
   IsString,
   IsInt,
@@ -47,6 +47,7 @@ class EnvironmentVariablesValidator {
 }
 
 export default registerAs<MailConfig>('mail', () => {
+  dotenv.config({ path: `.${process.env.NODE_ENV}.env` });
   validateConfig(process.env, EnvironmentVariablesValidator);
 
   return {
