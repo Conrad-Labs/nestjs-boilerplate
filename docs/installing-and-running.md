@@ -17,6 +17,16 @@ Switching between TypeORM and Mongoose is implemented based on the [Hexagonal Ar
 
 ---
 
+## Docker 
+
+The [docker-compose.yaml](./../docker-compose.yaml) files contains three services:
+
+- Postgres DB
+- Maildev: To run a virtual mail server to make sure emails are being sent, Running on localhost:1080  (to be used in dev)
+- Adminer: An in browser DB management tool similar to PGAdmin running on localhost:8080
+- The backend server (api)
+
+---
 ## Comfortable development (PostgreSQL + TypeORM)
 
 1. Clone repository
