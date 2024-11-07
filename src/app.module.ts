@@ -40,12 +40,8 @@ const infrastructureDatabaseModule = (databaseConfig() as DatabaseConfig)
     });
 // </database-block>
 
-import { CategoriesModule } from './entities/categories/categories.module';
-
 @Module({
   imports: [
-    CategoriesModule,
-    CategoriesModule,
     ConfigModule.forRoot({
       isGlobal: true,
       load: [
